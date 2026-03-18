@@ -1,0 +1,255 @@
+/* Reset : enlève marges/paddings par défaut et uniformise le box model */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style global de la page */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; /* Police */
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%); /* Fond dégradé */
+    min-height: 100vh; /* Prend toute la hauteur de l’écran */
+    padding: 2rem; /* Espacement autour du contenu */
+    color: #fff; /* Texte blanc */
+}
+
+/* Conteneur principal centré */
+.container {
+    max-width: 1400px; /* Largeur max */
+    margin: 0 auto; /* Centre horizontalement */
+}
+
+
+.header {
+    text-align: center; /*Centre le texte */
+    margin-bottom: 3rem; /*Espace en dessous */
+    animation: fadeInDown 0.6s ease-out; /*Animation d’entrée */
+
+    background: #1e293b; /*Couleur différente pour démarcation*/
+    padding: 2rem 1rem; /*Ajoute de l’espace interne*/
+    border-bottom: 2px solid #334155; /*Ligne de séparation */
+}
+
+/* Titre principal */
+.header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #60a5fa, #a78bfa, #f472b6); /* Dégradé */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Rend le texte en dégradé */
+    background-clip: text;
+    margin-bottom: 1rem;
+}
+
+/* Sous-titre */
+.header p {
+    color: #94a3b8; /* Gris clair */
+    font-size: 1.125rem;
+}
+/* Logo dans le header */
+.header-logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1rem;
+}
+
+/* Grille pour les cartes */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Colonnes adaptatives */
+    gap: 2rem; /* Espace entre cartes */
+}
+
+/* Carte individuelle */
+.card {
+    position: relative;
+    animation: fadeInUp 0.5s ease-out forwards; /* Animation entrée */
+    opacity: 0; /* Invisible au début */
+}
+
+/* Délai animation pour effet cascade */
+.card:nth-child(1) { animation-delay: 0s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.4s; }
+
+/* Effet au survol */
+.card:hover { transform: translateY(-10px); }
+
+/* Effet glow derrière la carte */
+.card-glow {
+    position: absolute;
+    inset: 0; /* Prend toute la taille */
+    border-radius: 1rem;
+    opacity: 0.5;
+    filter: blur(30px); /* Flou */
+    transition: opacity 0.3s;
+}
+
+/* Glow plus visible au hover */
+.card:hover .card-glow { opacity: 1; }
+
+/* Couleurs des glow */
+.card-glow.blue { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.card-glow.purple { background: linear-gradient(135deg, #a855f7, #ec4899); }
+.card-glow.red { background: linear-gradient(135deg, #ef4444, #f97316); }
+
+/* Contenu de la carte */
+.card-content {
+    position: relative;
+    background: rgba(30, 41, 59, 0.9); /* Fond semi transparent */
+    backdrop-filter: blur(10px); /* Effet verre */
+    border: 1px solid #334155;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+}
+
+/* Badge (titre de carte) */
+.badge {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 2rem;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+/* Couleurs badge */
+.badge.blue { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.badge.purple { background: linear-gradient(135deg, #a855f7, #ec4899); }
+.badge.red { background: linear-gradient(135deg, #ef4444, #f97316); }
+
+/* Description */
+.description {
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+    min-height: 40px; /* Garde hauteur fixe */
+}
+
+/* Prix */
+.prix {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4ade80; /* Vert */
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #334155;
+}
+
+/* Bloc composant */
+.composant {
+    background: rgba(51, 65, 85, 0.3);
+    border: 1px solid rgba(51, 65, 85, 0.5);
+    border-radius: 0.5rem;
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.2s;
+}
+
+/* Effet hover composant */
+.composant:hover {
+    border-color: #475569;
+    background: rgba(71, 85, 105, 0.3);
+    transform: translateX(5px);
+}
+
+/* Texte composant */
+.composant-nom { color: #94a3b8; font-size: 0.75rem; }
+.composant-spec { color: white; font-weight: 500; font-size: 0.875rem; }
+.composant-detail { color: #64748b; font-size: 0.75rem; }
+
+/* Cache la checkbox (utilisée pour toggle) */
+.toggle-checkbox { display: none; }
+
+/* Bouton toggle */
+.toggle-label {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+/* Couleurs bouton */
+.toggle-label.blue { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
+.toggle-label.purple { background: linear-gradient(135deg, #a855f7, #ec4899); }
+.toggle-label.red { background: linear-gradient(135deg, #ef4444, #f97316); }
+
+/* Container des composants (caché par défaut) */
+.composants-container {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+/* Affiche les composants si checkbox cochée */
+.toggle-checkbox:checked + .toggle-label + .composants-container {
+    max-height: 2000px;
+    padding-top: 1rem;
+}
+
+/* Texte du bouton */
+.toggle-label::after {
+    content: "Voir les détails";
+}
+.toggle-checkbox:checked + .toggle-label::after {
+    content: "Voir moins";
+}
+
+/* Footer principal*/
+.footer {
+    background: rgba(30, 41, 59, 0.9); /*Fond sombre semi-transparent*/
+    color: #fff; /*Texte en blanc */
+    text-align: center; /*entre tout le contenu */
+    padding: 2rem 1rem; /*Espace intérieur (haut/bas et côtés) */
+    border-top: 2px solid #334155;/*Ligne de séparation avec le contenu au-dessus */
+    margin-top: 3rem;
+}
+
+/*Liens dans le footer (email, etc.)*/
+.footer {
+    background: rgba(30, 41, 59, 0.9);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 1rem;
+    border-top: 2px solid #334155; /* Bordure de démarcation */
+    margin-top: 3rem;
+}
+
+.footer a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+.footer-contact p {
+    margin: 0.25rem 0;
+}
+
+.footer-bottom {
+    margin-top: 1rem;
+    font-size: 0.75rem;
+    color: #94a3b8;
+}
+/* Animations */
+@keyframes fadeInDown { from { opacity:0; transform:translateY(-20px);} to {opacity:1;} }
+@keyframes fadeInUp { from { opacity:0; transform:translateY(50px);} to {opacity:1;} }
+
+/* Responsive mobile */
+@media (max-width:768px){
+    .grid { grid-template-columns: 1fr; } /* Une seule colonne */
+    .header h1 { font-size: 2rem; } /* Réduit taille titre */
+}
